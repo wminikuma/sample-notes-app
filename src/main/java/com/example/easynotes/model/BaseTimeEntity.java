@@ -16,13 +16,13 @@ import java.time.LocalDate;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = false)
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"})
 public abstract class BaseTimeEntity {
-    @Column(nullable = false, updatable = true)
+    @Column
     @CreatedDate
     private LocalDate createdAt;
 
-    @Column(nullable = false)
+    @Column
     @LastModifiedDate
     private LocalDate updatedAt;
 }

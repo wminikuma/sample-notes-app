@@ -1,6 +1,7 @@
 package com.example.easynotes.controller;
 
 import com.example.easynotes.dto.NoteApiResponse;
+import com.example.easynotes.dto.NoteDto;
 import com.example.easynotes.model.Note;
 import com.example.easynotes.service.NoteService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -42,8 +43,8 @@ public class NoteController {
     }
 
     @PostMapping("/notes")
-    public ResponseEntity<?> createNote(@RequestBody Note note) {
-        URI createLocation = URI.create("/api/notes/" + note.getId());
+    public ResponseEntity<?> createNote(@RequestBody NoteDto note) {
+        URI createLocation = URI.create("/api/notes/");
         Note createNote = noteService.createNote(note);
         List<Note> result = new ArrayList<>();
         result.add(createNote);
