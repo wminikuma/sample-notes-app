@@ -1,5 +1,6 @@
 package com.example.easynotes.service;
 
+import com.example.easynotes.exception.ErrorCode;
 import com.example.easynotes.exception.ResourceNotFoundException;
 import com.example.easynotes.model.Note;
 import com.example.easynotes.repository.NoteRepository;
@@ -21,7 +22,7 @@ public class NoteService {
     // find by id
     public Note getNoteById(Long id) {
         return noteRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Note not found"));
     }
 
     // save
@@ -32,7 +33,7 @@ public class NoteService {
     // update
     public Note updateNote(Long id, Note note) {
         Note findNote = noteRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Note not found"));
 
         findNote.setTitle(note.getTitle());
         findNote.setContent(note.getContent());

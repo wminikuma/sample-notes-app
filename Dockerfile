@@ -3,7 +3,7 @@ FROM openjdk:17-jdk-slim AS build
 WORKDIR /app
 COPY gradlew .
 COPY gradle gradle
-COPY build.gradle settings.gradle .
+COPY build.gradle settings.gradle ./
 COPY src src
 RUN chmod +x gradlew
 RUN ./gradlew clean build -x test
